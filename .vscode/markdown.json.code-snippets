@@ -1,0 +1,19 @@
+{
+	"Task template": {
+		"prefix": "task",
+		"body": [
+			"## Task Description",
+			"$0$1",
+			"",
+			"---",
+			"",
+			"### Solution",
+			"$2",
+			"",
+			"### Constraints and Complexity",
+			"- **Time Complexity**: $3",
+			"- **Space Complexity**: $4",
+		],
+		"description": "Szablon zadania"
+	}
+}
