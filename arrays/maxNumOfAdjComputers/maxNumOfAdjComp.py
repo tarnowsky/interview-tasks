@@ -4,25 +4,36 @@ def numOfAdjComputers(
     powerMax: int
 ) -> int:
     #? Formula: Σ(powerOutputs) + Σ(boostedOutputs) * number_of_computers
-    #! Brute force
+    #! Sliding window
     n = len(powerOutputs)
-    curr_max_power = 0
-    for i in range(n):
-        for j in range(i+1, n+1):
-            number_of_computers = j - i
-            outputPower = sum(powerOutputs[i:j])
-            boostedPower = sum(boostedOutputs[i:j])
+    left = 0
+    powerSum = 0
+    boostSum = 0
+    maxWindowSize = 0
 
-            power = outputPower + boostedPower * number_of_computers
-            if powerMax >= power > curr_max_power:
-                curr_max_power = power
-                result = number_of_computers
-    return result
+    for right in range(n):
+        powerSum += powerOutputs[right]
+        boostSum += boostedOutputs[right]
+        windowSize = right - left + 1
+        totalPower = powerSum + boostSum * windowSize
 
-powerOutputs = [30, 40, 20]
-boostedOutputs = [5, 5, 5]
+        while totalPower > powerMax and left <= right:
+            powerSum -= powerOutputs[left]
+            boostSum -= boostedOutputs[right]
+            left += 1
+            windowSize = right - left + 1
+            totalPower = powerSum + boostSum * windowSize
+        
+        maxWindowSize = max(maxWindowSize, windowSize)
+
+    return maxWindowSize
+            
+        
+powerOutputs =      [10,    20,     30,     40,     50,     60]
+boostedOutputs =    [10,    9,      8,      7,      6,      5]
 powerMax = 110
 
-expectedOutput = 2
+
+
 
 print(numOfAdjComputers(powerOutputs, boostedOutputs, powerMax))
