@@ -52,5 +52,13 @@
         "variant": "cpp",
         "vector": "cpp",
         "algorithm": "cpp"
+    },
+    "[markdown]": {
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": false
+        },
+        "editor.snippetSuggestions": "top"
     }
 }
