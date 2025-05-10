@@ -32,7 +32,7 @@ class BST:
         return self
 
     def insert(self, *values: int) -> BST:
-        if not self.val:
+        if self.val == None:
             self.val = values[0]
             values = values[1:]
 
@@ -65,6 +65,3 @@ class BST:
             return result
 
         return draw_tree(self)
-
-tree = BST(5).insert(3, 7, 2, 4)
-print(tree)
